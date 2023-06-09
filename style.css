@@ -1,0 +1,22 @@
+#map {
+ height: 90vh;
+ width: 80%;
+ background-color: #ddd;   
+}
+
+.buttonBox{
+    display: flex;
+}
+
+.changeMap{
+    width: max-content;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: blue;
+    color: white;
+}
+
+.searchBox{
+    margin-bottom: 20px;
+}
