@@ -25,6 +25,16 @@ function initMap(){
         draggable: true
     });
 
+    let infoWindow = new google.maps.InfoWindow({
+        content: '<h2>MEU INFO WINDOW</h2>', //Pode usar html normal e colocar classe e estilizar no css
+        // position: marker.getPosition(),
+        // maxWidth: 200
+    }); 
+
+    marker.addListener('click', function() {
+        infoWindow.open(map, marker);
+    });
+
 
     //remover marcador
     //marker .setMap(null);
