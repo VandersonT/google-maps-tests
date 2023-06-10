@@ -11,30 +11,62 @@ function initMap(){
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    //Adicionar marcador
-    var marker = new google.maps.Marker({
-        position: {lat: -18.5485, lng: -42.7659},
-        map: map,
-        title: 'Pichorra',
-        //label: 'P',
-        icon: {
-            url: './posa.png',
-            scaledSize: new google.maps.Size(32, 32)
-        },
-        animation: google.maps.Animation.DROP, //drop, bounce e pesquise mais se quiser
-        draggable: true
-    });
+    let posicoes = [
+        {lat: -18.5485, lng: -42.7659, msg: 'Primeiro', nome: 'raposa'},
+        {lat: -18.5435, lng: -42.7689, msg: 'Segundo', nome: 'Cachorro'},
+        {lat: -18.5405, lng: -42.7659, msg: 'Terceiro', nome: 'Cobra Sirucucu'},
+        {lat: -18.5415, lng: -42.7659, msg: 'Quarto', nome: 'Cobra Sandaia'},
+        {lat: -18.5600, lng: -42.7659, msg: 'Quinto', nome: 'Cobra Sucuri'}
+    ]
 
-    let infoWindow = new google.maps.InfoWindow({
-        content: '<h2>MEU INFO WINDOW</h2>', //Pode usar html normal e colocar classe e estilizar no css
-        // position: marker.getPosition(),
-        // maxWidth: 200
-    }); 
+    /*Inicializando variavel*/
+    let minLat = posicoes[0].lat;
+    let maxLat = posicoes[0].lat;
+    let minLng = posicoes[0].lng;
+    let maxLng = posicoes[0].lng;
+    
+    for (let i = 1; i < posicoes.length; i++) {
+      if (posicoes[i].lat < minLat) {
+        minLat = posicoes[i].lat;
+      }
+      if (posicoes[i].lat > maxLat) {
+        maxLat = posicoes[i].lat;
+      }
+      if (posicoes[i].lng < minLng) {
+        minLng = posicoes[i].lng;
+      }
+      if (posicoes[i].lng > maxLng) {
+        maxLng = posicoes[i].lng;
+      }
+    }
+    /****/
+    
+    posicoes.map((item, index) => {
+        //Adicionar marcador
+        var marker = new google.maps.Marker({
+            //position: {lat: -18.5485, lng: -42.7659},
+            position: {lat: item.lat, lng: item.lng},
+            map: map,
+            title: item.nome,
+            //label: 'P',
+            icon: {
+                url: './posa.png',
+                scaledSize: new google.maps.Size(32, 32)
+            },
+            animation: google.maps.Animation.DROP, //drop, bounce e pesquise mais se quiser
+            //draggable: true
+        });
 
-    marker.addListener('click', function() {
-        infoWindow.open(map, marker);
-    });
+        let infoWindow = new google.maps.InfoWindow({
+            content: '<h2>'+item.msg+'</h2>', //Pode usar html normal e colocar classe e estilizar no css
+            // position: marker.getPosition(),
+            // maxWidth: 200
+        }); 
 
+        marker.addListener('click', function() {
+            infoWindow.open(map, marker);
+        });
+    })
 
     //remover marcador
     //marker .setMap(null);
@@ -78,6 +110,37 @@ function initMap(){
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map);
     });
+
+    //Circulo
+    centerLat = (minLat + maxLat) / 2;
+    centerLng = (minLng + maxLng) / 2;
+
+    function calcularDistancia(lat1, lng1, lat2, lng2) {
+        const distance = Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lng2 - lng1, 2));
+        return distance;
+    }
+
+    let maxDistance = 0;
+    for (let i = 0; i < posicoes.length; i++) {
+    const distance = calcularDistancia(centerLat, centerLng, posicoes[i].lat, posicoes[i].lng);
+    if (distance > maxDistance) {
+        maxDistance = distance;
+    }
+    }
+    const radius = maxDistance * 130000;
+
+    const circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeWeight: 2,
+        strokeOpacity: 1,
+        fillColor: '#FF0000',
+        fillOpacity: .4,
+        center: {lat: centerLat, lng: centerLng},
+        radius: radius,
+        map: map
+    });
+
+    console.log(radius)
 }
 
 document.getElementById('satellite').addEventListener('click', function() {
