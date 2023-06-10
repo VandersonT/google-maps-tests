@@ -7,6 +7,8 @@ let posicoes = [
     {lat: -18.5535, lng: -42.7610, msg: 'Pisada', nome: 'Cobra Sandaia', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
     {lat: -18.5530, lng: -42.7605, msg: 'Bebeu veneno', nome: 'Cobra Sucuri', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'}
 ];
+
+let marcadores = {};;
 /*----------------------------------------------------------------------*/
 
 
@@ -149,6 +151,7 @@ function geraCirculos(){
     }
 }
 
+
 function barraPesquisa(){
     //Barra de pesquisa
     var input = document.getElementById('searchInput');
@@ -190,6 +193,18 @@ function barraPesquisa(){
     });
 }
 
+function editMarker(markerTitle){
+    // marcadores['Cachorro'].title = 'chorro';
+    
+    let teste = marcadores[markerTitle].infoWindow;
+    teste.setContent(`
+        <h2>${markerTitle}[Editado]</h2>
+        <p>ddddddd</p>
+        <a href='#' target='_blank'">verifica no site</a>
+        <br/><br/><button onClick="teste()">Editar</button>
+    `)
+}
+
 function realizaMarcações(){
     posicoes.map((item, index) => {
         //Adicionar marcador
@@ -212,15 +227,20 @@ function realizaMarcações(){
                 <h2>${item.nome}</h2>
                 <p>${item.msg}</p>
                 <a href='${item.link}' target='_blank'">verifica no site</a>
+                <br/><br/><button onClick="editMarker('${item.nome}')">Editar</button>
             `
             // position: marker.getPosition(),
             // maxWidth: 200
         }); 
 
         marker.addListener('click', function() {
+            marker.infoWindow = infoWindow;
             infoWindow.open(map, marker);
         });
-    })
+
+        marcadores[marker.title] = marker;
+        
+    });
 }
 
 function newMarker(){
@@ -249,12 +269,14 @@ function newMarker(){
                 <h2>Novo</h2>
                 <p>nova marcação</p>
                 <a href='https://google.com' target='_blank'">verifica no site</a>
+                <button class="editMarker">Editar</button>
             `
             // position: marker.getPosition(),
             // maxWidth: 200
         }); 
 
         marker.addListener('click', function() {
+            marker.infoWindow = infoWindow;
             infoWindow.open(map, marker);
         });
     });
