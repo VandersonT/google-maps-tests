@@ -1,7 +1,7 @@
 
 /*--------------------DATABASE-SIMULATION-------------------------------*/
     let posicoes = [
-        {lat: -18.5475, lng: -42.7689, msg: 'Atropelado', nome: 'raposa', img: 'posa.png', link: 'https://www.peritoanimal.com.br/a-raposa-como-animal-de-estimacao-20876.html'},
+        {lat: -18.5475, lng: -42.7689, msg: 'Espancada', nome: 'raposa', img: 'posa.png', link: 'https://www.peritoanimal.com.br/a-raposa-como-animal-de-estimacao-20876.html'},
         {lat: -18.5465, lng: -42.7689, msg: 'Atropelado', nome: 'Cachorro', img: 'dog.png', link: 'https://www.portaldodog.com.br/cachorros/'},
         {lat: -18.5460, lng: -42.7679, msg: 'Picada na foice', nome: 'Cobra Sirucucu', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
         {lat: -18.5535, lng: -42.7610, msg: 'Pisada', nome: 'Cobra Sandaia', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
@@ -12,7 +12,7 @@
 
 
 
-/*--------------SEPARA MARCAÇÕES POR AREASS------------------------------*/
+/*--------------SEPARA MARCAÇÕES POR AREAS-------------------------------*/
 function separarPorAreas(posicoes) {
     // Função para calcular a distância entre duas coordenadas geográficas
     function calcularDistancia(lat1, lng1, lat2, lng2) {
@@ -237,7 +237,7 @@ function separarPorAreas(posicoes) {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -18.5485, lng: -42.7659},
             zoom: 15,
-            mapTypeId: 'roadmap', //roadmap, satellite, hybrid, terrain
+            mapTypeId: 'hybrid', //roadmap, satellite, hybrid, terrain
         });
         
 
@@ -253,6 +253,15 @@ function separarPorAreas(posicoes) {
         geraCirculos();
     }
 /*----------------------------------------------------------------------*/
+
+
+
+
+
+/*------------------------------AÇÕES-----------------------------------*/
+
+/*----------------------------------------------------------------------*/
+
 
 
 
