@@ -116,18 +116,31 @@ function initMap(){
     centerLng = (minLng + maxLng) / 2;
 
     function calcularDistancia(lat1, lng1, lat2, lng2) {
-        const distance = Math.sqrt(Math.pow(lat2 - lat1, 2) + Math.pow(lng2 - lng1, 2));
+        const R = 6371; // raio médio da Terra em quilômetros
+        const dLat = toRadians(lat2 - lat1);
+        const dLng = toRadians(lng2 - lng1);
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+          Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c;
         return distance;
-    }
-
-    let maxDistance = 0;
-    for (let i = 0; i < posicoes.length; i++) {
-    const distance = calcularDistancia(centerLat, centerLng, posicoes[i].lat, posicoes[i].lng);
-    if (distance > maxDistance) {
-        maxDistance = distance;
-    }
-    }
-    const radius = maxDistance * 130000;
+      }
+      
+      function toRadians(degrees) {
+        return degrees * (Math.PI / 180);
+      }
+      
+      let maxDistance = 0;
+      for (let i = 0; i < posicoes.length; i++) {
+        const distance = calcularDistancia(centerLat, centerLng, posicoes[i].lat, posicoes[i].lng);
+        if (distance > maxDistance) {
+          maxDistance = distance;
+        }
+      }
+      
+      const radius = maxDistance * 1050; // converter para metros
 
     const circle = new google.maps.Circle({
         strokeColor: '#FF0000',
