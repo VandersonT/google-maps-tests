@@ -13,10 +13,10 @@ function initMap(){
 
     let posicoes = [
         {lat: -18.5485, lng: -42.7659, msg: 'Primeiro', nome: 'raposa'},
-        {lat: -18.5435, lng: -42.7689, msg: 'Segundo', nome: 'Cachorro'},
-        {lat: -18.5405, lng: -42.7659, msg: 'Terceiro', nome: 'Cobra Sirucucu'},
-        {lat: -18.5415, lng: -42.7659, msg: 'Quarto', nome: 'Cobra Sandaia'},
-        {lat: -18.5600, lng: -42.7659, msg: 'Quinto', nome: 'Cobra Sucuri'}
+        {lat: -18.5455, lng: -42.7689, msg: 'Segundo', nome: 'Cachorro'},
+        {lat: -18.5480, lng: -42.7659, msg: 'Terceiro', nome: 'Cobra Sirucucu'},
+        {lat: -18.5475, lng: -42.7659, msg: 'Quarto', nome: 'Cobra Sandaia'},
+        {lat: -18.5465, lng: -42.7659, msg: 'Quinto', nome: 'Cobra Sucuri'}
     ]
 
     /*Inicializando variavel*/
