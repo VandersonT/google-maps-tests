@@ -5,7 +5,8 @@ let posicoes = [
     {lat: -18.5465, lng: -42.7689, msg: 'Atropelado', nome: 'Cachorro', img: 'dog.png', link: 'https://www.portaldodog.com.br/cachorros/'},
     {lat: -18.5460, lng: -42.7679, msg: 'Picada na foice', nome: 'Cobra Sirucucu', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
     {lat: -18.5535, lng: -42.7610, msg: 'Pisada', nome: 'Cobra Sandaia', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
-    {lat: -18.5530, lng: -42.7605, msg: 'Bebeu veneno', nome: 'Cobra Sucuri', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'}
+    {lat: -18.5530, lng: -42.7605, msg: 'Bebeu veneno', nome: 'Cobra Sucuri', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
+    {lat: -18.5560, lng: -42.7605, msg: 'Bebeu veneno', nome: 'Cobra Sucuri', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'}
 ];
 
 let marcadores = {};;
@@ -305,8 +306,8 @@ function initMap(){
 
     //Cria o mapa e renderiza o mesmo na tela
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -18.5485, lng: -42.7659},
-        zoom: 15,
+        center: {lat: -18.5530, lng: -42.7659},
+        zoom: 14,
         mapTypeId: 'hybrid', //roadmap, satellite, hybrid, terrain
     });
     
