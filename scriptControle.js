@@ -201,8 +201,14 @@ function editMarker(markerTitle){
         <h2>${markerTitle}[Editado]</h2>
         <p>ddddddd</p>
         <a href='#' target='_blank'">verifica no site</a>
-        <br/><br/><button onClick="teste()">Editar</button>
+        <br/><br/>
+        <button>Editar</button>
+        <button onClick="deletar()">Deletar</button>
     `)
+}
+
+function deletar(markerTitle){
+    marcadores[markerTitle].setMap(null);
 }
 
 function realizaMarcações(){
@@ -212,7 +218,7 @@ function realizaMarcações(){
             //position: {lat: -18.5485, lng: -42.7659},
             position: {lat: item.lat, lng: item.lng},
             map: map,
-            title: item.nome,
+            title: item.nome, //leve isso como se fosse um id, o nome aqui deve ser unico
             //label: 'P',
             icon: {
                 url: './'+item.img,
@@ -227,7 +233,9 @@ function realizaMarcações(){
                 <h2>${item.nome}</h2>
                 <p>${item.msg}</p>
                 <a href='${item.link}' target='_blank'">verifica no site</a>
-                <br/><br/><button onClick="editMarker('${item.nome}')">Editar</button>
+                <br/><br/>
+                <button onClick="editMarker('${item.nome}')">Editar</button>
+                <button onClick="deletar('${item.nome}')">Deletar</button>
             `
             // position: marker.getPosition(),
             // maxWidth: 200
@@ -269,7 +277,9 @@ function newMarker(){
                 <h2>Novo</h2>
                 <p>nova marcação</p>
                 <a href='https://google.com' target='_blank'">verifica no site</a>
-                <button class="editMarker">Editar</button>
+                <br/><br/>
+                <button onClick="editMarker('Novo marcador')">Editar</button>
+                <button onClick="deletar('Novo marcador')">Deletar</button>
             `
             // position: marker.getPosition(),
             // maxWidth: 200
@@ -279,6 +289,8 @@ function newMarker(){
             marker.infoWindow = infoWindow;
             infoWindow.open(map, marker);
         });
+
+        marcadores[marker.title] = marker;
     });
 }
 /*----------------------------------------------------------------------*/
