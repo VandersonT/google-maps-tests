@@ -1,11 +1,11 @@
 
 /*--------------------DATABASE-SIMULATION-------------------------------*/
     let posicoes = [
-        {lat: -18.5485, lng: -42.7659, msg: 'Primeiro', nome: 'raposa'},
-        {lat: -18.5455, lng: -42.7689, msg: 'Segundo', nome: 'Cachorro'},
-        {lat: -18.5480, lng: -42.7659, msg: 'Terceiro', nome: 'Cobra Sirucucu'},
-        {lat: -18.5475, lng: -42.7659, msg: 'Quarto', nome: 'Cobra Sandaia'},
-        {lat: -18.5465, lng: -42.7659, msg: 'Quinto', nome: 'Cobra Sucuri'}
+        {lat: -18.5485, lng: -42.7659, msg: 'Atropelado', nome: 'raposa', img: 'posa.png', link: 'https://www.peritoanimal.com.br/a-raposa-como-animal-de-estimacao-20876.html'},
+        {lat: -18.5455, lng: -42.7689, msg: 'Atropelado', nome: 'Cachorro', img: 'dog.png', link: 'https://www.portaldodog.com.br/cachorros/'},
+        {lat: -18.5480, lng: -42.7659, msg: 'Picada na foice', nome: 'Cobra Sirucucu', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
+        {lat: -18.5475, lng: -42.7659, msg: 'Pisada', nome: 'Cobra Sandaia', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'},
+        {lat: -18.5465, lng: -42.7659, msg: 'Bebeu veneno', nome: 'Cobra Sucuri', img: 'cobra.png', link: 'https://pt.wikipedia.org/wiki/Cobra'}
     ];
 /*----------------------------------------------------------------------*/
 
@@ -133,7 +133,7 @@
                 title: item.nome,
                 //label: 'P',
                 icon: {
-                    url: './posa.png',
+                    url: './'+item.img,
                     scaledSize: new google.maps.Size(32, 32)
                 },
                 animation: google.maps.Animation.DROP, //drop, bounce e pesquise mais se quiser
@@ -141,7 +141,12 @@
             });
 
             let infoWindow = new google.maps.InfoWindow({
-                content: '<h2>'+item.msg+'</h2>', //Pode usar html normal e colocar classe e estilizar no css
+                //content: '<h2>'+item.msg+'</h2>', //Pode usar html normal e colocar classe e estilizar no css
+                content: `
+                    <h2>${item.nome}</h2>
+                    <p>${item.msg}</p>
+                    <a href='${item.link}' target='_blank'">verifica no site</a>
+                `
                 // position: marker.getPosition(),
                 // maxWidth: 200
             }); 
